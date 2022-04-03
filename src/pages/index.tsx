@@ -1,4 +1,4 @@
-import {Button, Flex, FormLabel, Input, Stack} from '@chakra-ui/react'
+import {Button, Flex, FormControl, FormLabel, Input, Stack} from '@chakra-ui/react'
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
           flexDir='column'
         >
           <Stack spacing='4'>
-            <div>
+            <FormControl>
               <FormLabel htmlFor='email'>e-mail</FormLabel>
               <Input
                 id='email'
@@ -33,8 +33,8 @@ export default function Home() {
                 }}
                 size='lg'
               />
-            </div>
-            <div>
+            </FormControl>
+            <FormControl>
               <FormLabel htmlFor='password'>password</FormLabel>
               <Input
                 id='password'
@@ -48,7 +48,7 @@ export default function Home() {
                 }}
                 size='lg'
               />
-            </div>
+            </FormControl>
           </Stack>
           <Button
             type='submit'
