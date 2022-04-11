@@ -7,7 +7,7 @@ export default function createUser() {
   return (
     <>
       <Box>
-        <Header/>
+        <Header />
         <Flex
           w='100%'
           my='6'
@@ -28,23 +28,41 @@ export default function createUser() {
             >
               Create user
             </Heading>
-            <Divider my='6' borderColor='gray.700' />
+            <Divider
+              my='6'
+              borderColor='gray.700'
+            />
             <VStack spacing='8'>
               <SimpleGrid
                 minChildWidth='240px'
                 spacing='8'
                 w='100%'
               >
-                <Input name='name' label='Full name'/>
-                <Input name='email' type='email' label='E-mail'/>
+                <Input
+                  name='name'
+                  label='Full name'
+                />
+                <Input
+                  name='email'
+                  type='email'
+                  label='E-mail'
+                />
               </SimpleGrid>
               <SimpleGrid
                 minChildWidth='240px'
                 spacing='8'
                 w='100%'
               >
-                <Input name='password' type='password' label='Password'/>
-                <Input name='password_confirmantion' type='password' label='Password Confirmation'/>
+                <Input
+                  name='password'
+                  type='password'
+                  label='Password'
+                />
+                <Input
+                  name='password_confirmantion'
+                  type='password'
+                  label='Password Confirmation'
+                />
               </SimpleGrid>
             </VStack>
             <Flex
