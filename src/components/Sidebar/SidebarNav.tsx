@@ -11,13 +11,13 @@ export function SiderbarNav() {
         align='flex-start'
       >
         <NavSection title={'HOME'}>
-          <NavLink icon={RiDashboardLine}>Dashboard</NavLink>
-          <NavLink icon={RiContactsFill}>Users</NavLink>
+          <NavLink icon={RiDashboardLine} href='/dashboard'>Dashboard</NavLink>
+          <NavLink icon={RiContactsFill} href='/users'>Users</NavLink>
         </NavSection>
         <Box>
           <NavSection title={'AUTOMATIZATION'}>
-            <NavLink icon={RiInputMethodLine}>Forms</NavLink>
-            <NavLink icon={RiGitMergeLine}>Automatization</NavLink>
+            <NavLink icon={RiInputMethodLine} href='/forms'>Forms</NavLink>
+            <NavLink icon={RiGitMergeLine} href='/automation'>Automation</NavLink>
           </NavSection>
         </Box>
       </Stack>
