@@ -21,6 +21,7 @@ import {Pagination} from "../../components/Pagination";
 import Link from 'next/link'
 import {useEffect} from "react";
 import {useQuery} from 'react-query'
+import {api} from "../../services/api";
 
 type User = {
   id: string;
@@ -30,9 +31,8 @@ type User = {
 }
 
 export default function UserList() {
-  const {data, isLoading, error} = useQuery('users', async () => {
-    const response = await fetch('http://localhost:3000/api/users')
-    const data = await response.json()
+  const {data, isLoading, isFetching, error} = useQuery('users', async () => {
+    const {data} = await api.get('users')
     const users = data.users.map((user: User) => {
       return {
         id: user.id,
@@ -46,7 +46,10 @@ export default function UserList() {
       }
     })
     return users
-  })
+  }, {
+    staleTime: 1000 * 6
+    }
+  )
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
@@ -79,6 +82,7 @@ export default function UserList() {
                 fontWeight='normal'
               >
                 Users
+                {!isLoading && isFetching && <Spinner size='sm' color='gray.500' ml='4'/>}
               </Heading>
               <Link href='/users/create' passHref>
                 <Button
