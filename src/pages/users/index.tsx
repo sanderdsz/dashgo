@@ -19,37 +19,13 @@ import {Sidebar} from "../../components/Sidebar";
 import {RiAddLine, RiPencilLine} from "react-icons/ri";
 import {Pagination} from "../../components/Pagination";
 import Link from 'next/link'
-import {useEffect} from "react";
-import {useQuery} from 'react-query'
-import {api} from "../../services/api";
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  createdAt: string;
-}
+import {useUsers} from "../../services/hooks/useUsers";
+import {useState} from "react";
 
 export default function UserList() {
-  const {data, isLoading, isFetching, error} = useQuery('users', async () => {
-    const {data} = await api.get('users')
-    const users = data.users.map((user: User) => {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        })
-      }
-    })
-    return users
-  }, {
-    staleTime: 1000 * 6
-    }
-  )
+  const [page, setPage] = useState(1)
+  const {data, isLoading, isFetching, error} = useUsers(page)
+  console.log(page)
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
@@ -126,7 +102,7 @@ export default function UserList() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {data.map(
+                    {data.users.map(
                       user => {
                         return (
                           <Tr key={user.id}>
@@ -168,9 +144,13 @@ export default function UserList() {
                     )}
                   </Tbody>
                 </Table>
+                <Pagination
+                  totalCountOfRegisters={data.totalCount}
+                  currentPage={page}
+                  onPageChange={setPage}
+                />
               </>
             )}
-            <Pagination/>
           </Box>
         </Flex>
       </Box>
